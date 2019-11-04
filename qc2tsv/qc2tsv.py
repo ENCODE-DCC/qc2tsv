@@ -13,7 +13,7 @@ from caper.caper_uri import init_caper_uri, CaperURI
 from caper.dict_tool import split_dict
 
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 
 class Qc2Tsv(object):
