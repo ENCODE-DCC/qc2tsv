@@ -39,7 +39,7 @@ class Qc2Tsv(object):
             self._jsons.append(j)
 
 
-    def flatten_to_tsv(self, row_split_rules=None):
+    def flatten_to_tsv(self, row_split_rules=None, transpose=False):
         """Flatten JSON objects by using pandas.io.json.json_normalize
         Header will be multi-line according to the hierachy of JSON objects
         The last entry of each column will be aligned to bottom
@@ -68,10 +68,9 @@ class Qc2Tsv(object):
             # align lowest level to bottom
             m[-1] = cols[-1]
             header_matrix.append(m)
-        # transpose
+        # transpose temp matrix
         header_matrix_t = [[header_matrix[j][i] for j in range(len(header_matrix))] \
                 for i in range(len(header_matrix[0]))]
-
         # remove repeating entries except for the last row
         for row in header_matrix_t[:-1]:
             for i, col in enumerate(row):
@@ -82,8 +81,13 @@ class Qc2Tsv(object):
                         row[j] = ''
                     else:
                         break
-        new_header = '\n'.join([self._delim.join(row) for row in header_matrix_t])
-        return '\n'.join([new_header, contents])
+        contents_matrix = [row.split(self._delim) for row in contents.split('\n')]
+        final_matrix = header_matrix_t + contents_matrix
+        # transpose the final matrix if required
+        if transpose:
+            final_matrix = [[final_matrix[j][i] for j in range(len(final_matrix))] \
+                    for i in range(len(final_matrix[0]))]
+        return '\n'.join([self._delim.join(row) for row in final_matrix])
 
 
 def parse_arguments():
@@ -117,6 +121,9 @@ def parse_arguments():
         help='LOCAL temporary cache directory for remote QC files. '
              'All temporary files for auto-inter-storage transfer will be '
              'stored here.')
+    p.add_argument(
+        '--transpose', action='store_true',
+        help='Transpose rows and columns.')
     p.add_argument('-v', '--version', action='store_true',
                    help='Show version')
 
@@ -137,16 +144,16 @@ def parse_arguments():
         p.print_help()
         p.exit()
 
-    return qcs, args.delim, args.regex_split_rule
+    return qcs, args.delim, args.regex_split_rule, args.transpose
 
 
 def main():
     # parse arguments. note that args is a dict
-    qcs, delim, regex_split_rule= parse_arguments()
+    qcs, delim, regex_split_rule, transpose = parse_arguments()
 
     q = Qc2Tsv(qcs, delim=delim)
     rules = [tuple(i.split(':', 1)) for i in regex_split_rule]
-    tsv = q.flatten_to_tsv(row_split_rules=rules)
+    tsv = q.flatten_to_tsv(row_split_rules=rules, transpose=transpose)
     print(tsv)
     return 0
 
