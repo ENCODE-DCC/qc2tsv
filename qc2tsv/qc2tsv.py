@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""Qc2Tsv (qc2tsv) flattens multiple JSON objects \
-into a single spreadsheet
+"""qc2tsv converts multiple JSON objects into a single spreadsheet
 
 Author:
     Jin Lee (leepc12@gmail.com) at ENCODE-DCC
