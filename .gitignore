@@ -103,6 +103,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-test.txt
-test.tsv
+qc2tsv/test.txt
+qc2tsv/test.tsv
 
