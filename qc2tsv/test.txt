@@ -1,6 +1,0 @@
-/users/leepc12//code/chip-seq-pipeline2/dev/test/test_workflow/ref_output/v1.3.0/ENCSR000DYI_subsampled_chr19_only_hist_unrep/qc.json
-/users/leepc12//code/chip-seq-pipeline2/dev/test/test_workflow/ref_output/v1.3.0/ENCSR000DYI_subsampled_chr19_only/qc.json
-/users/leepc12//code/chip-seq-pipeline2/dev/test/test_workflow/ref_output/v1.3.0/ENCSR936XTK_subsampled_chr19_only_hist/qc.json
-/users/leepc12//code/chip-seq-pipeline2/dev/test/test_workflow/ref_output/v1.3.0/ENCSR936XTK_subsampled_chr19_only/qc.json
-/users/leepc12//code/chip-seq-pipeline2/dev/test/test_workflow/ref_output/v1.3.0/ENCSR000DYI_subsampled_chr19_only_unrep/qc.json
-/users/leepc12//code/chip-seq-pipeline2/dev/test/test_workflow/ref_output/v1.3.0/ENCSR000DYI_subsampled_chr19_only_hist/qc.json
