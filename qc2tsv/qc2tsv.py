@@ -150,7 +150,9 @@ def parse_arguments():
              'Example: "replicate:rep1:^(rep|ctl)\\d+$". '
              'This example will find key names for biological replicates '
              'like "rep1" and "rep2" and split each row into multiple rows '
-             'for each replicate.')
+             'for each replicate. '
+             'IMPORTANT: MAKE SURE THAT THIS PARAMETER IS CONSITENT WITH '
+             '--merge-split-rows.')
     p.add_argument(
         '--merge-split-rows', default='replicate:rep1',
         help='Merge rows splitted by rules defined with --regex-split-rule. '
@@ -160,7 +162,9 @@ def parse_arguments():
              '2) A row splitted with an entry "RULE_NAME:FIRST_KEY". '
              '(e.g. quality metrics for rep1)'
              'Format: "RULE_NAME:FIRST_KEY". '
-             'This will be helpful to make the spreadsheet non-staggered.')
+             'This will be helpful to make the spreadsheet non-staggered. '
+             'IMPORTANT: MAKE SURE THAT THIS PARAMETER IS CONSITENT WITH '
+             '--regex-split-rule.')
     p.add_argument(
         '--delim', default='\t',
         help='Delimiter for output TSV.')
