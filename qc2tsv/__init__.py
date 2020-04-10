@@ -1,4 +1,4 @@
-from qc2tsv import qc2tsv
+from .version import version
 
-__version__ = qc2tsv.__version__
+__version__ = version
 
