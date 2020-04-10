@@ -1,14 +1,14 @@
 import setuptools
-import qc2tsv
+
 
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name='qc2tsv',
-    version=qc2tsv.__version__,
+    version='0.1.3',
     scripts=['bin/qc2tsv'],
-    python_requires='>3.4.1',
+    python_requires='>=3.6',
     author='Jin Lee',
     author_email='leepc12@gmail.com',
     description='Converts multiple QC JSONs to a spread sheet (TSV/CSV)',
@@ -21,5 +21,5 @@ setuptools.setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: POSIX :: Linux',
     ],
-    install_requires=['caper>=0.5.4', 'pandas>=0.20.0']
+    install_requires=['autouri>=0.1.2.1', 'pandas>=0.20.0', 'caper']
 )
