@@ -41,7 +41,8 @@ $ qc2tsv --file [TXT]
 
 ## Split rules
 
-Define a regular expression (`NAME:REGEX`) to split row into multiple rows. This is useful to have a new row for each biological replicate in genomic pipeline's QC JSON output. Make sure that slashes in `REGEX` are correctly escaped. You can also define multiple split rules.
+Define a regular expression (`NAME:REGEX`) to split row into multiple rows. This is useful to have a new row for each biological replicate in genomic pipeline's QC JSON output. Make sure that backslashes in `REGEX` are correctly escaped. You can also define multiple split rules.
 ```bash
 $ qc2tsv ... --regex-split-rule "replicate:^(rep|ctl)\\d+$" --regex-split-rule "[RULE_NAME:REGEX]" ...
 ```
+
