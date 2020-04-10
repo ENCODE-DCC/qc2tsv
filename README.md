@@ -6,11 +6,11 @@ This tool converts multiple QC JSON objects into a spreadsheet (TSV/CSV), which 
 
 It flattens each JSON object to make a row in a spreadsheet and then splits each row into multiple rows according to [split rules](#split-rules). This is useful to have a seperate row for a JSON object with a specific key name (e.g. each biological replicate).
 
-This tool can directly read from various types of URIs (`gs://`, `s3://`, `http://`, `https://` and local path). To access cloud buckets (`gs://` and `s3://`), make sure that you have installed corresponding cloud CLI utils (`gcloud`/`gsutil` for GCS or `aws` for AWS S3).
+This tool can directly read from various types of URIs (`gs://`, `s3://`, `http://`, `https://` and local path). To access private cloud buckets (`gs://` and `s3://`), make sure to authenticate yourself on your shell environment. To access private URLs, use `~/.netrc` file.
 
 ## Installation
 
-Make sure that you have `python3`(> 3.4.1) installed on your system. Use `pip` to install qc2tsv.
+Make sure that you have `python3`(>= 3.6) installed on your system. Use `pip` to install qc2tsv.
 ```bash
 $ pip install qc2tsv
 ```
@@ -41,7 +41,8 @@ $ qc2tsv --file [TXT]
 
 ## Split rules
 
-Define a regular expression (`NAME:REGEX`) to split row into multiple rows. This is useful to have a new row for each biological replicate in genomic pipeline's QC JSON output. Make sure that slashes in `REGEX` are correctly escaped. You can also define multiple split rules.
+Define a regular expression (`NAME:REGEX`) to split row into multiple rows. This is useful to have a new row for each biological replicate in genomic pipeline's QC JSON output. Make sure that backslashes in `REGEX` are correctly escaped. You can also define multiple split rules.
 ```bash
 $ qc2tsv ... --regex-split-rule "replicate:^(rep|ctl)\\d+$" --regex-split-rule "[RULE_NAME:REGEX]" ...
 ```
+
