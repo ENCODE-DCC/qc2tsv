@@ -6,7 +6,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='qc2tsv',
-    version='0.1.3',
+    version='0.1.4',
     scripts=['bin/qc2tsv'],
     python_requires='>=3.6',
     author='Jin Lee',

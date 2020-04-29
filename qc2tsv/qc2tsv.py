@@ -2,7 +2,7 @@ import json
 import logging
 import pandas
 from copy import deepcopy
-from autouri import AutoURI
+from autouri import AutoURI, AbsPath
 from caper.dict_tool import split_dict, merge_dict
 
 
@@ -27,6 +27,7 @@ class Qc2Tsv(object):
         self._delim = delim
         self._jsons = []
         for qc in qcs:
+            qc = AbsPath.get_abspath_if_exists(qc)
             s = AutoURI(qc).read()
             j = json.loads(s)
             self._jsons.append(j)

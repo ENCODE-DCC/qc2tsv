@@ -2,7 +2,7 @@
 import argparse
 import logging
 from .qc2tsv import Qc2Tsv
-from .version import version
+from . import __version__ as version
 
 
 def parse_arguments():
