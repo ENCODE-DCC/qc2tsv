@@ -21,5 +21,5 @@ setuptools.setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: POSIX :: Linux',
     ],
-    install_requires=['autouri>=0.1.2.1', 'pandas>=0.20.0', 'caper']
+    install_requires=['autouri>=0.1.2.1', 'pandas>=1.0.0', 'caper']
 )
