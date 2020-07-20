@@ -6,7 +6,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='qc2tsv',
-    version='0.1.4',
+    version='0.1.5',
     scripts=['bin/qc2tsv'],
     python_requires='>=3.6',
     author='Jin Lee',
@@ -21,5 +21,5 @@ setuptools.setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: POSIX :: Linux',
     ],
-    install_requires=['autouri>=0.1.2.1', 'pandas>=0.20.0', 'caper']
+    install_requires=['autouri>=0.1.2.1', 'pandas>=1.0.0', 'caper']
 )

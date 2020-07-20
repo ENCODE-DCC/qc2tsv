@@ -36,7 +36,7 @@ class Qc2Tsv(object):
     def flatten_to_tsv(self, row_split_rules=None,
                        merge_split_rows=None,
                        collapse_header=False, transpose=False):
-        """Flatten JSON objects by using pandas.io.json.json_normalize
+        """Flatten JSON objects by using pandas.json_normalize
         Header will be multi-line according to the hierachy of JSON objects
         The last entry of each column will be aligned to bottom
         all the others will be aligned to top
@@ -75,7 +75,7 @@ class Qc2Tsv(object):
             sep = Qc2Tsv.SEP_COLLAPSED_HEADER
         else:
             sep = Qc2Tsv.SEP
-        df = pandas.io.json.json_normalize(jsons, sep=sep)
+        df = pandas.json_normalize(jsons, sep=sep)
         tsv = df.to_csv(sep=self._delim, index=False).strip('\n')
         (header, contents) = tsv.split('\n', 1)
 
