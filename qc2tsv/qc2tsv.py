@@ -16,7 +16,7 @@ class Qc2Tsv(object):
     SEP = '*_:_*'
     SEP_COLLAPSED_HEADER = '.'
 
-    def __init__(self, qcs, delim='\t'):        
+    def __init__(self, qcs, delim='\t'):
         """
         Args:
             qcs:
