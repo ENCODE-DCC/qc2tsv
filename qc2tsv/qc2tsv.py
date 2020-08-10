@@ -28,6 +28,9 @@ class Qc2Tsv(object):
         self._jsons = []
         for qc in qcs:
             qc = AbsPath.get_abspath_if_exists(qc)
+            if not AutoURI(qc).exists:
+                logger.error('File does not exists. Skipping... {uri}'.format(uri=qc))
+                continue
             s = AutoURI(qc).read()
             j = json.loads(s)
             self._jsons.append(j)
