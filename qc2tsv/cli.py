@@ -1,8 +1,27 @@
 #!/usr/bin/env python3
 import argparse
 import logging
+import os
+from autouri import AutoURI
 from .qc2tsv import Qc2Tsv
 from . import __version__ as version
+
+
+def get_abspath(path):
+    """Get abspath from a string.
+    This function is mainly used to make a command line argument an abspath
+    since AutoURI module only works with abspath and full URIs
+    (e.g. /home/there, gs://here/there).
+    For example, "caper run toy.wdl --docker ubuntu:latest".
+    AutoURI cannot recognize toy.wdl on CWD as a file path.
+    It should be converted to an abspath first.
+    To do so, use this function for local file path strings only (e.g. toy.wdl).
+    Do not use this function for other non-local-path strings (e.g. --docker).
+    """
+    if path:
+        if not AutoURI(path).is_valid:
+            return os.path.abspath(os.path.expanduser(path))
+    return path
 
 
 def parse_arguments():
@@ -71,9 +90,9 @@ def parse_arguments():
     qcs = []
     for qc in args.qcs:
         qcs.append(qc)
-    if args.file is not None:
-        with open(CaperURI(args.file).get_local_file()) as fp:
-            qcs.extend(fp.read().strip('\n').split('\n'))
+    if args.file:
+        qc_files = AutoURI(get_abspath(args.file)).read().strip('\n').split('\n')
+        qcs.extend(qc_files)
     if len(qcs) == 0:
         p.print_help()
         p.exit()

@@ -16,7 +16,7 @@ class Qc2Tsv(object):
     SEP = '*_:_*'
     SEP_COLLAPSED_HEADER = '.'
 
-    def __init__(self, qcs, delim='\t'):        
+    def __init__(self, qcs, delim='\t'):
         """
         Args:
             qcs:
@@ -28,6 +28,9 @@ class Qc2Tsv(object):
         self._jsons = []
         for qc in qcs:
             qc = AbsPath.get_abspath_if_exists(qc)
+            if not AutoURI(qc).exists:
+                logger.error('File does not exists. Skipping... {uri}'.format(uri=qc))
+                continue
             s = AutoURI(qc).read()
             j = json.loads(s)
             self._jsons.append(j)
